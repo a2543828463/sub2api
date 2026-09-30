@@ -90,6 +90,18 @@
   --color-dark-950: 7 7 6;
 }
 
+/* Logged-in workspace (AppLayout .relay-workspace): lighter paper tones than the poster pages */
+html:not(.dark) .relay-workspace {
+  --ccf-bg: #faf7f0;
+  --ccf-bg-rgb: 250 247 240;
+  --ccf-surface: #fffdf9;
+  --ccf-surface-rgb: 255 253 249;
+  --ccf-soft: #f4eee2;
+  --ccf-soft-rgb: 244 238 226;
+  --ccf-border: #ebe3d3;
+  --ccf-border-rgb: 235 227 211;
+}
+
 html.dark {
   /* ---- semantic roles (dark); panel* unchanged ---- */
   --ccf-bg: #1c1812;
