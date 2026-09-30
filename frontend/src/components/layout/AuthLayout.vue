@@ -6,7 +6,7 @@
         <div class="relative z-10 py-14">
           <span class="text-[10px] font-semibold tracking-[.22em] text-[var(--ccf-panel-accent)]">A CLEARER WAY TO CONNECT.</span>
           <h2 class="mt-6 text-4xl font-semibold leading-relaxed tracking-tight">思考下一步，<br />该做什么。</h2>
-          <p class="mt-6 max-w-sm text-sm leading-7 text-[var(--ccf-panel-muted)]">统一的模型接入入口，清晰的用量与费用。把精力留给代码、产品，和下一步好想法。</p>
+          <p class="mt-6 max-w-sm text-sm leading-7 text-[var(--ccf-panel-muted)]">统一的模型接入入口，清晰的用量与费用。把精力留给代码、产品，和下一个好想法。</p>
           <div class="mt-12 space-y-4 text-sm text-[var(--ccf-panel-ink)]">
             <p class="flex items-center gap-3"><Icon name="key" size="sm" />按项目管理 API 密钥</p>
             <p class="flex items-center gap-3"><Icon name="chart" size="sm" />查看真实调用与实际扣费</p>
