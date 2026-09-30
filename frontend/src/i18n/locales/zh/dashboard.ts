@@ -1054,4 +1054,28 @@ export default {
   },
 
   // Admin
+
+  tickets: {
+    title: '工单支持',
+    description: '提交问题、补充说明并查看处理进度。',
+    newTicket: '新建工单',
+    subject: '主题',
+    subjectPlaceholder: '一句话描述你的问题',
+    message: '问题描述',
+    messagePlaceholder: '详细描述你遇到的问题',
+    send: '发送',
+    replyPlaceholder: '写下你的回复…',
+    closeTicket: '关闭工单',
+    closed: '已关闭',
+    open: '待处理',
+    answered: '已回复',
+    you: '我',
+    support: '客服',
+    noTickets: '暂无工单。',
+    createSuccess: '工单已创建',
+    replySuccess: '回复已发送',
+    closeSuccess: '工单已关闭',
+    loadFailed: '加载工单失败',
+    saveFailed: '操作失败',
+  },
 }

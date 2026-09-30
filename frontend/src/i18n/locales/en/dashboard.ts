@@ -1050,4 +1050,28 @@ export default {
   },
 
   // Admin
+
+  tickets: {
+    title: 'Support Tickets',
+    description: 'Ask questions or report problems. We usually reply within 24 hours.',
+    newTicket: 'New Ticket',
+    subject: 'Subject',
+    subjectPlaceholder: 'Brief summary of your issue',
+    message: 'Message',
+    messagePlaceholder: 'Describe your issue in detail',
+    send: 'Send',
+    replyPlaceholder: 'Write your reply...',
+    closeTicket: 'Close ticket',
+    closed: 'Closed',
+    open: 'Open',
+    answered: 'Answered',
+    you: 'You',
+    support: 'Support',
+    noTickets: 'No tickets yet.',
+    createSuccess: 'Ticket created',
+    replySuccess: 'Reply sent',
+    closeSuccess: 'Ticket closed',
+    loadFailed: 'Failed to load tickets',
+    saveFailed: 'Operation failed',
+  },
 }

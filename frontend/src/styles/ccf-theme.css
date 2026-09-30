@@ -1,0 +1,119 @@
+/*
+ * ccfable poster palette
+ *
+ * Single source of truth for theme tokens.
+ * - --ccf-<role>      hex value, for plain CSS usage
+ * - --ccf-<role>-rgb  space-separated "R G B" triplet, for rgb(var(--x) / a)
+ * - --color-{primary,gray,dark}-N  triplets consumed by tailwind.config.js
+ *   as rgb(var(--color-x-N) / <alpha-value>)
+ * Light values live on :root, dark overrides on html.dark (only --ccf-* change).
+ */
+
+:root {
+  /* ---- semantic roles (light) ---- */
+  --ccf-bg: #f2eada;
+  --ccf-bg-rgb: 242 234 218;
+  --ccf-surface: #fbf7ef;
+  --ccf-surface-rgb: 251 247 239;
+  --ccf-ink: #33281d;
+  --ccf-ink-rgb: 51 40 29;
+  --ccf-muted: #6b5d4a;
+  --ccf-muted-rgb: 107 93 74;
+  --ccf-border: #ddd0b8;
+  --ccf-border-rgb: 221 208 184;
+  --ccf-soft: #ebe1cc;
+  --ccf-soft-rgb: 235 225 204;
+  --ccf-accent: #6f5a39;
+  --ccf-accent-rgb: 111 90 57;
+  --ccf-button: #4d492a;
+  --ccf-button-rgb: 77 73 42;
+  --ccf-button-hover: #5d5834;
+  --ccf-button-hover-rgb: 93 88 52;
+  --ccf-button-fg: #fbf7ef;
+  --ccf-button-fg-rgb: 251 247 239;
+  --ccf-focus: #7d6538;
+  --ccf-focus-rgb: 125 101 56;
+  --ccf-shadow: #33281d;
+  --ccf-shadow-rgb: 51 40 29;
+
+  /* ---- dark code / login panel (same in both modes) ---- */
+  --ccf-panel: #2a2418;
+  --ccf-panel-rgb: 42 36 24;
+  --ccf-panel-raised: #352d1f;
+  --ccf-panel-raised-rgb: 53 45 31;
+  --ccf-panel-border: #4a3f2c;
+  --ccf-panel-border-rgb: 74 63 44;
+  --ccf-panel-ink: #efe6d4;
+  --ccf-panel-ink-rgb: 239 230 212;
+  --ccf-panel-muted: #b8a888;
+  --ccf-panel-muted-rgb: 184 168 136;
+  --ccf-panel-accent: #d8c49a;
+  --ccf-panel-accent-rgb: 216 196 154;
+
+  /* ---- tailwind primary scale ---- */
+  --color-primary-50: 249 247 244;
+  --color-primary-100: 241 238 230;
+  --color-primary-200: 230 223 208;
+  --color-primary-300: 208 192 159;
+  --color-primary-400: 186 157 100;
+  --color-primary-500: 140 114 64;
+  --color-primary-600: 114 94 54;
+  --color-primary-700: 92 76 45;
+  --color-primary-800: 75 62 38;
+  --color-primary-900: 57 48 30;
+  --color-primary-950: 33 28 18;
+
+  /* ---- tailwind gray scale (warm H36) ---- */
+  --color-gray-50: 250 250 249;
+  --color-gray-100: 245 244 242;
+  --color-gray-200: 233 231 228;
+  --color-gray-300: 216 212 207;
+  --color-gray-400: 169 162 150;
+  --color-gray-500: 121 113 99;
+  --color-gray-600: 90 83 74;
+  --color-gray-700: 69 64 56;
+  --color-gray-800: 43 40 35;
+  --color-gray-900: 26 24 21;
+  --color-gray-950: 8 7 6;
+
+  /* ---- tailwind dark scale (warm H36; accent scale aliases these) ---- */
+  --color-dark-50: 250 250 249;
+  --color-dark-100: 246 244 242;
+  --color-dark-200: 234 231 227;
+  --color-dark-300: 216 211 204;
+  --color-dark-400: 171 160 144;
+  --color-dark-500: 125 113 95;
+  --color-dark-600: 92 83 69;
+  --color-dark-700: 70 63 53;
+  --color-dark-800: 44 40 33;
+  --color-dark-900: 26 23 19;
+  --color-dark-950: 7 7 6;
+}
+
+html.dark {
+  /* ---- semantic roles (dark); panel* unchanged ---- */
+  --ccf-bg: #1c1812;
+  --ccf-bg-rgb: 28 24 18;
+  --ccf-surface: #262017;
+  --ccf-surface-rgb: 38 32 23;
+  --ccf-ink: #efe6d4;
+  --ccf-ink-rgb: 239 230 212;
+  --ccf-muted: #c2b499;
+  --ccf-muted-rgb: 194 180 153;
+  --ccf-border: #3b3325;
+  --ccf-border-rgb: 59 51 37;
+  --ccf-soft: #2e271c;
+  --ccf-soft-rgb: 46 39 28;
+  --ccf-accent: #d8c49a;
+  --ccf-accent-rgb: 216 196 154;
+  --ccf-button: #d8c49a;
+  --ccf-button-rgb: 216 196 154;
+  --ccf-button-hover: #e6d6b2;
+  --ccf-button-hover-rgb: 230 214 178;
+  --ccf-button-fg: #1c1812;
+  --ccf-button-fg-rgb: 28 24 18;
+  --ccf-focus: #b89c71;
+  --ccf-focus-rgb: 184 156 113;
+  --ccf-shadow: #000000;
+  --ccf-shadow-rgb: 0 0 0;
+}

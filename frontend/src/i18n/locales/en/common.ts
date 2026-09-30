@@ -113,7 +113,8 @@ export default {
         minutes: '{m}m',
         withSuffix: '{time} to lift'
       }
-    }
+    },
+    loadMore: 'Load more',
   },
 
   adminCompliance: {
@@ -214,6 +215,8 @@ export default {
     contentModeration: 'Content Moderation',
     promptAudit: 'Prompt Audit',
     auditLogs: 'Audit Logs',
+    tickets: 'Tickets',
+    ticketsAdmin: 'Ticket Management',
   },
 
   // Auth
