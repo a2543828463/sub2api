@@ -1055,6 +1055,28 @@ export default {
 
   // Admin
 
+  billing: {
+    title: '账单',
+    description: '按模型查看月账单，导出用量明细。',
+    requests: '请求数',
+    totalCost: '总费用',
+    models: '模型数',
+    model: '模型',
+    tokens: '词元数',
+    cost: '费用（$）',
+    noData: '本月暂无计费用量。',
+    exportTitle: '用量导出',
+    startDate: '开始日期',
+    endDate: '结束日期',
+    exportCSV: '导出 CSV',
+    exporting: '导出中…',
+    exportHint: '每次最多导出 31 天，最多 10,000 行。',
+    loadFailed: '加载账单失败',
+    exportFailed: '导出失败',
+    invalidRange: '日期范围无效',
+    rangeTooLong: '范围不能超过 31 天',
+  },
+
   tickets: {
     title: '工单支持',
     description: '提交问题、补充说明并查看处理进度。',

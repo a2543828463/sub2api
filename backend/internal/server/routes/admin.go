@@ -130,6 +130,7 @@ func RegisterAdminRoutes(
 
 		// 工单系统
 		registerTicketAdminRoutes(admin, h)
+		registerBillingExportAdminRoutes(admin, h)
 
 		// 操作审计日志
 		registerAuditLogRoutes(admin, h, stepUpAuth)
@@ -910,5 +911,13 @@ func registerTicketAdminRoutes(admin *gin.RouterGroup, h *handler.Handlers) {
 		tickets.GET("/:id", h.Admin.Ticket.GetAny)
 		tickets.POST("/:id/replies", h.Admin.Ticket.ReplyAny)
 		tickets.POST("/:id/close", h.Admin.Ticket.CloseAny)
+	}
+}
+
+func registerBillingExportAdminRoutes(admin *gin.RouterGroup, h *handler.Handlers) {
+	billing := admin.Group("/billing/users/:userId")
+	{
+		billing.GET("/statement", h.Admin.BillingExport.AdminStatement)
+		billing.GET("/export", h.Admin.BillingExport.AdminExport)
 	}
 }

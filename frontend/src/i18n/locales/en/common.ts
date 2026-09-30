@@ -215,6 +215,7 @@ export default {
     contentModeration: 'Content Moderation',
     promptAudit: 'Prompt Audit',
     auditLogs: 'Audit Logs',
+    billing: 'Billing',
     tickets: 'Tickets',
     ticketsAdmin: 'Ticket Management',
   },

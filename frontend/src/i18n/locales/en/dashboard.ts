@@ -1051,6 +1051,28 @@ export default {
 
   // Admin
 
+  billing: {
+    title: 'Billing Statement',
+    description: 'Monthly cost by model and usage detail export.',
+    requests: 'Requests',
+    totalCost: 'Total cost',
+    models: 'Models',
+    model: 'Model',
+    tokens: 'Tokens',
+    cost: 'Cost ($)',
+    noData: 'No billable usage this month.',
+    exportTitle: 'Usage export',
+    startDate: 'Start date',
+    endDate: 'End date',
+    exportCSV: 'Export CSV',
+    exporting: 'Exporting...',
+    exportHint: 'Up to 31 days per export, max 10,000 rows.',
+    loadFailed: 'Failed to load statement',
+    exportFailed: 'Export failed',
+    invalidRange: 'Invalid date range',
+    rangeTooLong: 'Range must be within 31 days',
+  },
+
   tickets: {
     title: 'Support Tickets',
     description: 'Ask questions or report problems. We usually reply within 24 hours.',

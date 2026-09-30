@@ -215,6 +215,7 @@ export default {
     contentModeration: '内容审计',
     promptAudit: '提示词审计',
     auditLogs: '操作日志',
+    billing: '账单',
     tickets: '工单',
     ticketsAdmin: '工单管理',
   },
