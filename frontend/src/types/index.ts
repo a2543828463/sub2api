@@ -2488,3 +2488,26 @@ export type {
   PlatformQuotaWindow,
   PlatformQuotasResponse,
 } from '@/api/admin/users'
+
+// ==================== Support Ticket Types ====================
+
+export interface TicketReply {
+  id: number
+  ticket_id: number
+  author: string
+  author_id: number
+  body: string
+  created_at: string
+}
+
+export interface SupportTicket {
+  id: number
+  user_id: number
+  user_email?: string
+  subject: string
+  status: string
+  created_at: string
+  updated_at: string
+  closed_at?: string | null
+  replies?: TicketReply[]
+}

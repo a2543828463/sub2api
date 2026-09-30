@@ -1,7 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-dark-950">
-    <!-- Background Decoration -->
-    <div class="pointer-events-none fixed inset-0 bg-mesh-gradient"></div>
+  <div class="relay-workspace min-h-screen">
 
     <!-- Sidebar -->
     <AppSidebar />
@@ -23,6 +21,7 @@
 </template>
 
 <script setup lang="ts">
+import '@/styles/relay.css'
 import '@/styles/onboarding.css'
 import { computed, onMounted } from 'vue'
 import { useAppStore } from '@/stores'

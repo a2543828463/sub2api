@@ -606,4 +606,26 @@ export default {
     },
 
     // Ops Monitoring
+
+  tickets: {
+      title: 'Support Tickets',
+      description: 'Reply to user questions and close resolved tickets.',
+      user: 'User',
+      subject: 'Subject',
+      status: 'Status',
+      open: 'Open',
+      answered: 'Answered',
+      closed: 'Closed',
+      all: 'All',
+      support: 'Support',
+      replyPlaceholder: 'Write your reply...',
+      sendReply: 'Send reply',
+      closeTicket: 'Close ticket',
+      noTickets: 'No tickets.',
+      replySuccess: 'Reply sent',
+      closeSuccess: 'Ticket closed',
+      loadFailed: 'Failed to load tickets',
+      saveFailed: 'Operation failed',
+      openCount: '{count} open',
+    },
 }
