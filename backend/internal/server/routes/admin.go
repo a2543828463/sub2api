@@ -128,6 +128,10 @@ func RegisterAdminRoutes(
 		// 邀请返利（专属用户管理）
 		registerAffiliateRoutes(admin, h)
 
+		// 工单系统
+		registerTicketAdminRoutes(admin, h)
+		registerBillingExportAdminRoutes(admin, h)
+
 		// 操作审计日志
 		registerAuditLogRoutes(admin, h, stepUpAuth)
 	}
@@ -896,5 +900,24 @@ func channelMonitorModeV2Guard(settingService *service.SettingService) gin.Handl
 			return
 		}
 		c.Next()
+	}
+}
+
+func registerTicketAdminRoutes(admin *gin.RouterGroup, h *handler.Handlers) {
+	tickets := admin.Group("/tickets")
+	{
+		tickets.GET("", h.Admin.Ticket.ListAll)
+		tickets.GET("/stats", h.Admin.Ticket.Stats)
+		tickets.GET("/:id", h.Admin.Ticket.GetAny)
+		tickets.POST("/:id/replies", h.Admin.Ticket.ReplyAny)
+		tickets.POST("/:id/close", h.Admin.Ticket.CloseAny)
+	}
+}
+
+func registerBillingExportAdminRoutes(admin *gin.RouterGroup, h *handler.Handlers) {
+	billing := admin.Group("/billing/users/:userId")
+	{
+		billing.GET("/statement", h.Admin.BillingExport.AdminStatement)
+		billing.GET("/export", h.Admin.BillingExport.AdminExport)
 	}
 }

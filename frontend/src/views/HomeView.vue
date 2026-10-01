@@ -9,7 +9,7 @@
       allowfullscreen
     ></iframe>
     <!-- HTML mode - SECURITY: homeContent is admin-only setting, XSS risk is acceptable -->
-    <div v-else v-html="homeContent"></div>
+    <div v-else v-html="renderedHomeContent"></div>
   </div>
 
   <!-- Compact Home Page -->
@@ -110,7 +110,7 @@
         class="absolute bottom-1/4 right-1/4 h-64 w-64 rounded-full bg-primary-400/10 blur-3xl"
       ></div>
       <div
-        class="absolute inset-0 bg-[linear-gradient(rgba(20,184,166,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(20,184,166,0.03)_1px,transparent_1px)] bg-[size:64px_64px]"
+        class="absolute inset-0 bg-[linear-gradient(rgb(var(--color-primary-500)_/_0.03)_1px,transparent_1px),linear-gradient(90deg,rgb(var(--color-primary-500)_/_0.03)_1px,transparent_1px)] bg-[size:64px_64px]"
       ></div>
     </div>
 
@@ -500,6 +500,8 @@ import { useAuthStore, useAppStore } from '@/stores'
 import LocaleSwitcher from '@/components/common/LocaleSwitcher.vue'
 import Icon from '@/components/icons/Icon.vue'
 import { sanitizeUrl } from '@/utils/url'
+import { renderHomeContent } from '@/utils/homeContentTemplate'
+import { normalizeRelayEndpoint } from '@/composables/useRelayEndpoint'
 import { FeatureFlags, isFeatureFlagEnabled } from '@/utils/featureFlags'
 
 const { t } = useI18n()
@@ -513,6 +515,25 @@ const siteLogo = computed(() => sanitizeUrl(appStore.cachedPublicSettings?.site_
 const siteSubtitle = computed(() => appStore.cachedPublicSettings?.site_subtitle || 'AI API Gateway Platform')
 const docUrl = computed(() => sanitizeUrl(appStore.cachedPublicSettings?.doc_url || appStore.docUrl || ''))
 const homeContent = computed(() => appStore.cachedPublicSettings?.home_content || '')
+// Placeholders ({{ site_name }} etc.) and data-ccf-if conditionals resolved against
+// public settings; recomputes when settings arrive asynchronously.
+const renderedHomeContent = computed(() => {
+  const settings = appStore.cachedPublicSettings
+  const apiBaseUrl = normalizeRelayEndpoint(
+    settings?.api_base_url || appStore.apiBaseUrl || '',
+    window.location.origin,
+  )
+  return renderHomeContent(homeContent.value, {
+    site_name: siteName.value,
+    site_logo: siteLogo.value || '/relay-mark.svg',
+    site_subtitle: siteSubtitle.value,
+    api_base_url: apiBaseUrl,
+    api_base_root: apiBaseUrl.replace(/\/v1$/, ''),
+    doc_url: docUrl.value,
+    contact_info: settings?.contact_info || '',
+    year: String(new Date().getFullYear()),
+  })
+})
 const hasHomeContent = computed(() => homeContent.value.trim().length > 0)
 const compactHomeEnabled = computed(() => appStore.cachedPublicSettings?.compact_home_enabled === true)
 const modelPlazaEnabled = computed(() => isFeatureFlagEnabled(FeatureFlags.modelPlaza))
@@ -696,7 +717,7 @@ onMounted(() => {
   color: #a78bfa;
 }
 .code-url {
-  color: #14b8a6;
+  color: rgb(var(--color-primary-500));
 }
 .code-comment {
   color: #64748b;
@@ -737,8 +758,8 @@ onMounted(() => {
 :deep(.dark) .terminal-window {
   box-shadow:
     0 25px 50px -12px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(20, 184, 166, 0.2),
-    0 0 40px rgba(20, 184, 166, 0.1),
+    0 0 0 1px rgb(var(--color-primary-500) / 0.2),
+    0 0 40px rgb(var(--color-primary-500) / 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 </style>

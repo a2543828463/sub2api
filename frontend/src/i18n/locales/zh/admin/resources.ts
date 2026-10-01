@@ -603,4 +603,26 @@ export default {
     },
 
     // Ops Monitoring
+
+  tickets: {
+      title: '工单管理',
+      description: '回复用户问题，关闭已解决的工单。',
+      user: '用户',
+      subject: '主题',
+      status: '状态',
+      open: '待处理',
+      answered: '已回复',
+      closed: '已关闭',
+      all: '全部',
+      support: '客服',
+      replyPlaceholder: '写下你的回复…',
+      sendReply: '发送回复',
+      closeTicket: '关闭工单',
+      noTickets: '暂无工单。',
+      replySuccess: '回复已发送',
+      closeSuccess: '工单已关闭',
+      loadFailed: '加载工单失败',
+      saveFailed: '操作失败',
+      openCount: '待处理 {count}',
+    },
 }
