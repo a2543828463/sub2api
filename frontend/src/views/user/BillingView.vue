@@ -8,9 +8,6 @@
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <input v-model="monthText" type="month" class="input w-44" @change="loadStatement" />
-          <button type="button" class="btn btn-secondary" :disabled="exporting" @click="doExport">
-            {{ exporting ? t('billing.exporting') : t('billing.exportCSV') }}
-          </button>
         </div>
       </div>
 
@@ -49,24 +46,6 @@
           </tbody>
         </table>
       </div>
-
-      <div class="rounded-lg border border-[var(--ccf-border)] bg-[var(--ccf-surface)] p-4 shadow-sm">
-        <h2 class="mb-3 text-sm font-semibold text-gray-900 dark:text-white">{{ t('billing.exportTitle') }}</h2>
-        <div class="flex flex-col gap-3 sm:flex-row sm:items-end">
-          <div>
-            <label class="input-label">{{ t('billing.startDate') }}</label>
-            <input v-model="exportStart" type="date" class="input" />
-          </div>
-          <div>
-            <label class="input-label">{{ t('billing.endDate') }}</label>
-            <input v-model="exportEnd" type="date" class="input" />
-          </div>
-          <button type="button" class="btn btn-secondary" :disabled="exporting" @click="doExport">
-            {{ exporting ? t('billing.exporting') : t('billing.exportCSV') }}
-          </button>
-        </div>
-        <p class="input-hint mt-2">{{ t('billing.exportHint') }}</p>
-      </div>
     </div>
   </AppLayout>
 </template>
@@ -89,21 +68,10 @@ const rows = ref<BillingStatementRow[]>([])
 const totalRequests = ref(0)
 const totalCost = ref(0)
 const loading = ref(false)
-const exporting = ref(false)
-const exportStart = ref('')
-const exportEnd = ref('')
 
 const money = (v?: number | null): string => {
   if (v === undefined || v === null || !Number.isFinite(v)) return '-'
   return v.toFixed(4)
-}
-const startOfLocalDay = (d: string): Date => {
-  const [y, m, day] = d.split('-').map((s) => Number(s))
-  return new Date(y, (m || 1) - 1, day || 1, 0, 0, 0)
-}
-const endOfLocalDay = (d: string): Date => {
-  const [y, m, day] = d.split('-').map((s) => Number(s))
-  return new Date(y, (m || 1) - 1, day || 1, 23, 59, 59)
 }
 const compactNum = (v: number): string => {
   if (v >= 1000000) return `${(v / 1000000).toFixed(2)}M`
@@ -135,38 +103,6 @@ const loadStatement = async () => {
     appStore.showError(extractApiErrorMessage(error, t('billing.loadFailed')))
   } finally {
     loading.value = false
-  }
-}
-
-const doExport = async () => {
-  // <input type="date"> 给的是本地日期：按本地时区构造，避免 UTC 错位 8 小时。
-  const end = exportEnd.value ? endOfLocalDay(exportEnd.value) : new Date()
-  const start = exportStart.value
-    ? startOfLocalDay(exportStart.value)
-    : new Date(end.getTime() - 7 * 24 * 3600 * 1000)
-  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime()) || start > end) {
-    appStore.showError(t('billing.invalidRange'))
-    return
-  }
-  if (end.getTime() - start.getTime() > 31 * 24 * 3600 * 1000) {
-    appStore.showError(t('billing.rangeTooLong'))
-    return
-  }
-  exporting.value = true
-  try {
-    const blob = await billingAPI.exportCSV(start.toISOString(), end.toISOString())
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `billing-${start.toISOString().slice(0, 10)}.csv`
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    URL.revokeObjectURL(url)
-  } catch (error: any) {
-    appStore.showError(extractApiErrorMessage(error, t('billing.exportFailed')))
-  } finally {
-    exporting.value = false
   }
 }
 

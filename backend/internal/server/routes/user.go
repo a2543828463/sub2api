@@ -129,11 +129,10 @@ func RegisterUserRoutes(
 			tickets.POST("/:id/close", h.Admin.Ticket.CloseMine)
 		}
 
-		// 账单：月账单与用量导出
+		// 账单：月账单
 		billing := authenticated.Group("/billing")
 		{
 			billing.GET("/statement", h.Admin.BillingExport.Statement)
-			billing.GET("/export", h.Admin.BillingExport.Export)
 		}
 
 		// 卡密兑换

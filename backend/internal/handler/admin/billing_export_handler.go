@@ -59,30 +59,6 @@ func (h *BillingExportHandler) Statement(c *gin.Context) {
 	response.Success(c, stmt)
 }
 
-// Export 用户用量 CSV：?start=RFC3339&end=RFC3339（≤31 天）。
-// GET /billing/export
-func (h *BillingExportHandler) Export(c *gin.Context) {
-	if !h.requireService(c) {
-		return
-	}
-	subject, ok := middleware2.GetAuthSubjectFromContext(c)
-	if !ok {
-		response.Unauthorized(c, "Unauthorized")
-		return
-	}
-	start, end, ok := billingExportRange(c)
-	if !ok {
-		return
-	}
-	data, filename, err := h.service.ExportCSV(c.Request.Context(), subject.UserID, start, end)
-	if err != nil {
-		response.ErrorFrom(c, err)
-		return
-	}
-	c.Header("Content-Disposition", "attachment; filename="+filename)
-	c.Data(200, "text/csv; charset=utf-8", data)
-}
-
 // AdminStatement 管理员查任意用户月账单。
 // GET /api/v1/admin/billing/users/:userId/statement?year=&month=
 func (h *BillingExportHandler) AdminStatement(c *gin.Context) {
